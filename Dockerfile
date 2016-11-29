@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libffi-dev \
     xmlsec1
 
-RUN pip install --src /tmp/src -e git+https://github.com/rebeckag/pysaml2@conditional_ldap#egg=pysaml2
+RUN pip install --upgrade setuptools pip wheel
+RUN pip install --src /tmp/src -e git+https://github.com/rohe/pysaml2#egg=pysaml2
 RUN pip install cherrypy==3.8.1 mako==1.0.3
 
 COPY start.sh /tmp/
