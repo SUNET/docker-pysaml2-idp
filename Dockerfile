@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --upgrade setuptools pip wheel
 RUN pip install --src /tmp/src -e git+https://github.com/rohe/pysaml2#egg=pysaml2
 RUN pip install cherrypy==3.8.1 mako==1.0.3 pycryptodomex
+# requests is incompatible with idna>=2.8
+RUN pip install "idna<2.8,>=2.5"
 
 COPY start.sh /tmp/
 WORKDIR /tmp/src/pysaml2/example/idp2/
